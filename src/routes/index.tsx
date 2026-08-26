@@ -3,7 +3,11 @@ import { useEffect, useState } from "react";
 import { MessageCircle } from "lucide-react";
 import heroImage from "/images/hero-wedding.jpg";
 import coupleImage from "/images/couple-shoot.jpg";
+import outdoorImage from "/images/outdoor-shoot.jpg";
+import birthdayImage from "/images/birthday-events.jpg";
 import babyImage from "/images/baby-shoot.jpg";
+import corporateImage from "/images/corporate-product.jpg";
+import customImage from "/images/custom-package.jpg";
 import ajayImage from "../assets/Ajay Karke.PNG";
 import bholenathImage from "../assets/Bholenath Pawar.jpg";
 
@@ -11,54 +15,114 @@ const primary = "917721094206";
 const secondary = "919209672955";
 const instagram = "a_k_1260";
 const whatsapp = (
-  message = "Hi AB Creative, I'm interested in booking a photography session. Can you share more details?",
+  message = "Hello, I’m interested in booking a photography session with AB Creative. I’d like to know more about your packages and availability.",
 ) => `https://wa.me/${primary}?text=${encodeURIComponent(message)}`;
+
 const packages = [
   {
+    icon: "💍",
     title: "Wedding Shoot",
-    price: "₹5,000",
+    price: "₹6,999",
     image: heroImage,
-    features: ["Candid & traditional photography", "Wedding day coverage", "Edited photographs"],
+    features: [
+      "Wedding-day coverage",
+      "Candid + traditional photography",
+      "Edited photos",
+    ],
+    whatsappMessage:
+      "Hello, I’m interested in the Wedding Shoot Package (₹6,999). I’d like to know more about the wedding-day coverage, candid and traditional photography, edited photos, availability, and booking process.",
   },
   {
-    title: "Couple Shoot",
-    price: "₹5,000",
+    icon: "❤️",
+    title: "Couple / Pre-Wedding",
+    price: "₹3,999",
     image: coupleImage,
-    features: ["Natural couple portraits", "Pre-wedding option", "Edited photographs"],
+    features: [
+      "Couple portraits",
+      "Pre-wedding session",
+      "1–2 locations",
+      "Edited photos",
+    ],
+    whatsappMessage:
+      "Hello, I’m interested in the Couple / Pre-Wedding Package (₹3,999). I’d like to know more about the couple portraits, locations, shoot duration, edited photographs, availability, and booking process.",
   },
   {
+    icon: "🌿",
     title: "Outdoor Shoot",
-    price: "₹5,000",
-    image: coupleImage,
-    features: ["Location-based portraits", "Creative outdoor frames", "Edited photographs"],
+    price: "₹2,999",
+    image: outdoorImage,
+    features: [
+      "Outdoor portraits",
+      "Creative frames",
+      "1 location",
+      "Edited photos",
+    ],
+    whatsappMessage:
+      "Hello, I’m interested in the Outdoor Shoot Package (₹2,999). I’d like to know more about the outdoor locations, portrait photography, shoot duration, edited photos, availability, and booking process.",
   },
   {
-    title: "Shop Opening",
-    price: "₹3,000",
-    image: heroImage,
-    features: ["Event documentation", "Reels and photographs", "Opening day coverage"],
+    icon: "🎂",
+    title: "Birthday & Events",
+    price: "₹2,999",
+    image: birthdayImage,
+    features: [
+      "Event coverage",
+      "Cake cutting",
+      "Family/candid photos",
+      "Edited photos",
+    ],
+    whatsappMessage:
+      "Hello, I’m interested in the Birthday & Events Package (₹2,999). I’d like to know more about the event coverage, candid moments, cake-cutting photography, family/group photos, availability, and booking process.",
   },
   {
-    title: "Baby Shoot",
-    price: "₹5,000",
+    icon: "👶",
+    title: "Baby & Newborn",
+    price: "₹2,999",
     image: babyImage,
-    features: ["Gentle baby portraits", "Comfortable session", "Edited photographs"],
+    features: [
+      "Baby portraits",
+      "Family photos",
+      "Cute candid moments",
+      "Edited photos",
+    ],
+    whatsappMessage:
+      "Hello, I’m interested in the Baby & Newborn Package (₹2,999). I’d like to know more about the baby portraits, family photographs, shoot setup, edited photos, availability, and booking process.",
   },
   {
-    title: "All Type Shoot",
-    price: "Custom Package",
-    image: heroImage,
-    features: ["Personalized coverage", "Flexible shoot plan", "Photos and reels"],
+    icon: "🏢",
+    title: "Corporate / Product",
+    price: "₹3,499",
+    image: corporateImage,
+    features: [
+      "Professional photos",
+      "Products/team shots",
+      "Edited images",
+    ],
+    whatsappMessage:
+      "Hello, I’m interested in the Corporate / Product Package (₹3,499). I’d like to know more about the photography coverage, number of photos, requirements, availability, and booking process.",
+  },
+  {
+    icon: "✨",
+    title: "Custom Package",
+    price: "Custom",
+    image: customImage,
+    features: [
+      "Personalized coverage",
+      "Flexible shoot plan",
+      "Requirements-based pricing",
+    ],
+    whatsappMessage:
+      "Hello, I’m interested in the Custom Photography Package. I have a specific photography requirement and would like to discuss the shoot details, coverage, location, and pricing.",
   },
 ] as const;
 
 const galleryItems = [
   [heroImage, "Wedding", "Indian wedding couple at golden hour"],
   [coupleImage, "Couple", "Couple portrait during golden hour"],
-  [babyImage, "Baby", "Baby photography portrait"],
-  [heroImage, "Events", "Warm event photography detail"],
-  [coupleImage, "Portrait", "Natural couple portrait"],
-  [babyImage, "Portrait", "Gentle portrait photography"],
+  [outdoorImage, "Outdoor", "Scenic outdoor portrait session in nature"],
+  [birthdayImage, "Events", "Joyful birthday celebration with loved ones"],
+  [babyImage, "Baby", "Baby and newborn gentle portrait photography"],
+  [corporateImage, "Corporate", "High-end corporate and brand product photography"],
 ] as const;
 
 export const Route = createFileRoute("/")({
@@ -197,39 +261,55 @@ function Services() {
   return (
     <section id="services" className="py-20">
       <div className="mx-auto max-w-6xl px-5 sm:px-6">
-        <h2 className="text-center font-serif text-4xl">What we shoot</h2>
-        <p className="mx-auto mt-4 max-w-2xl text-center text-muted-foreground">
-          Choose a package that fits your moment, or ask us to build something custom.
-        </p>
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {packages.map(({ title, price, image, features }) => (
+        <div className="text-center">
+          <p className="text-xs font-semibold uppercase tracking-widest text-primary">
+            Our Packages
+          </p>
+          <h2 className="mt-2 font-serif text-4xl">What we shoot</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
+            Choose a package that fits your moment, or ask us to build something custom.
+          </p>
+        </div>
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {packages.map(({ icon, title, price, image, features, whatsappMessage }) => (
             <article
               key={title}
-              className="package-card flex flex-col overflow-hidden rounded-2xl border border-border bg-card"
+              className="package-card flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:shadow-md"
             >
-              <img
-                src={image}
-                alt=""
-                width={600}
-                height={400}
-                loading="lazy"
-                className="package-image aspect-[5/3] w-full object-cover"
-              />
-              <div className="flex flex-1 flex-col p-5">
-                <h3 className="font-serif text-2xl">{title}</h3>
-                <p className="mt-2 text-2xl font-semibold text-primary">{price}</p>
-                <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+              <div className="relative aspect-[5/3] w-full overflow-hidden">
+                <img
+                  src={image}
+                  alt={title}
+                  width={600}
+                  height={400}
+                  loading="lazy"
+                  className="package-image h-full w-full object-cover"
+                />
+                <span className="absolute left-3 top-3 inline-flex items-center rounded-full bg-background/90 px-3 py-1 text-sm font-medium shadow-sm backdrop-blur-md">
+                  {icon}
+                </span>
+              </div>
+              <div className="flex flex-1 flex-col p-5 sm:p-6">
+                <h3 className="font-serif text-2xl font-semibold">{title}</h3>
+                <p className="mt-2 text-2xl font-bold text-primary">{price}</p>
+                <div className="my-4 border-t border-border/70" />
+                <ul className="flex-1 space-y-2.5 text-sm text-muted-foreground">
                   {features.map((feature) => (
-                    <li key={feature}>✓ {feature}</li>
+                    <li key={feature} className="flex items-start gap-2">
+                      <span className="font-bold text-primary">✓</span>
+                      <span>{feature}</span>
+                    </li>
                   ))}
                 </ul>
                 <a
-                  href={whatsapp(
-                    `Hi AB Creative, I would love to enquire about your ${title}. Please share the available dates, package details, and the next steps for booking.`,
-                  )}
-                  className="mt-5 inline-flex min-h-11 items-center font-semibold text-primary hover:underline"
+                  href={whatsapp(whatsappMessage)}
+                  className="mt-6 inline-flex min-h-11 items-center justify-between rounded-xl bg-secondary/70 px-4 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-[#25D366] hover:text-white"
                 >
-                  Book this package →
+                  <span className="flex items-center gap-2">
+                    <MessageCircle className="h-4 w-4" aria-hidden="true" />
+                    Book Now
+                  </span>
+                  <span>→</span>
                 </a>
               </div>
             </article>
@@ -258,17 +338,19 @@ function Gallery() {
       <div className="mx-auto max-w-6xl px-5 sm:px-6">
         <h2 className="text-center font-serif text-4xl">Frames that feel like home</h2>
         <div className="mt-8 flex gap-2 overflow-x-auto pb-2 md:justify-center">
-          {["All", "Wedding", "Couple", "Portrait", "Baby", "Events"].map((item) => (
-            <button
-              key={item}
-              type="button"
-              onClick={() => setFilter(item)}
-              aria-pressed={filter === item}
-              className={`min-h-11 shrink-0 rounded-full border px-4 ${filter === item ? "bg-primary text-primary-foreground" : "bg-card"}`}
-            >
-              {item}
-            </button>
-          ))}
+          {["All", "Wedding", "Couple", "Outdoor", "Events", "Baby", "Corporate"].map(
+            (item) => (
+              <button
+                key={item}
+                type="button"
+                onClick={() => setFilter(item)}
+                aria-pressed={filter === item}
+                className={`min-h-11 shrink-0 rounded-full border px-4 ${filter === item ? "bg-primary text-primary-foreground" : "bg-card"}`}
+              >
+                {item}
+              </button>
+            ),
+          )}
         </div>
         <div className="mt-7 grid grid-cols-2 gap-3 md:grid-cols-3">
           {shown.map((item) => (
@@ -334,22 +416,41 @@ function SimpleSections() {
     "We capture your moments",
     "Receive your photos",
   ];
-  const questions = [
-    "How early should I book?",
-    "Do you travel outside the area?",
-    "How many edited photos will I receive?",
-    "How long does delivery take?",
-    "Do you provide raw photographs?",
-    "How do I confirm my booking?",
+  const faqs = [
+    {
+      q: "How early should I book?",
+      a: "We recommend booking at least 1–2 weeks in advance for portraits and 1–2 months in advance for weddings to secure your date.",
+    },
+    {
+      q: "Do you travel outside the area?",
+      a: "Yes! We are available for destination weddings, outstation events, and outdoor shoots across locations.",
+    },
+    {
+      q: "How many edited photos will I receive?",
+      a: "Each package includes high-resolution, professionally color-graded and edited photos delivered in a digital album.",
+    },
+    {
+      q: "How long does delivery take?",
+      a: "Sneak peek previews are shared within 2–3 days, and the full gallery of edited photos is delivered within 7–10 days.",
+    },
+    {
+      q: "Do you provide raw photographs?",
+      a: "Yes, raw images and reel clips can be shared upon request depending on your package.",
+    },
+    {
+      q: "How do I confirm my booking?",
+      a: "Tap any WhatsApp button on this page, let us know your preferred shoot date and package, and we'll confirm your slot immediately.",
+    },
   ];
+
   return (
     <>
       <section id="why-us" className="py-20">
-        <div className="mx-auto max-w-6xl px-5">
+        <div className="mx-auto max-w-6xl px-5 sm:px-6">
           <h2 className="text-center font-serif text-4xl">The AB Creative difference</h2>
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             {reasons.map((reason) => (
-              <article key={reason} className="rounded-2xl border border-border bg-card p-6">
+              <article key={reason} className="rounded-2xl border border-border bg-card p-6 shadow-sm">
                 <h3 className="font-serif text-2xl">{reason}</h3>
                 <p className="mt-3 text-muted-foreground">
                   Thoughtful photography, clear packages, and a simple booking experience.
@@ -359,39 +460,57 @@ function SimpleSections() {
           </div>
         </div>
       </section>
+
       <section className="bg-secondary/40 py-20">
-        <div className="mx-auto max-w-3xl px-5">
-          <h2 className="text-center font-serif text-4xl">How it works</h2>
-          <div className="mt-10 space-y-4">
-            {steps.map((step, index) => (
-              <div
-                key={step}
-                className="flex items-center gap-5 rounded-2xl border border-border bg-card p-5"
-              >
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary text-sm text-primary-foreground">
-                  0{index + 1}
-                </span>
-                <h3 className="font-serif text-2xl">{step}</h3>
+        <div className="mx-auto max-w-6xl px-5 sm:px-6">
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-12 items-start">
+            {/* How it works */}
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-primary">
+                Seamless Experience
+              </p>
+              <h2 className="mt-2 font-serif text-3xl sm:text-4xl">How it works</h2>
+              <p className="mt-3 text-muted-foreground">
+                From initial conversation to album delivery, we make every step simple and memorable.
+              </p>
+              <div className="mt-8 space-y-3.5">
+                {steps.map((step, index) => (
+                  <div
+                    key={step}
+                    className="flex items-center gap-4 rounded-2xl border border-border bg-card p-4 sm:p-5 shadow-sm transition-transform hover:translate-x-1"
+                  >
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
+                      0{index + 1}
+                    </span>
+                    <h3 className="font-serif text-xl sm:text-2xl font-medium">{step}</h3>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section className="py-20">
-        <div className="mx-auto max-w-3xl px-5">
-          <h2 className="text-center font-serif text-4xl">Frequently asked</h2>
-          <div className="mt-9 divide-y divide-border rounded-2xl border border-border bg-card px-5">
-            {questions.map((question) => (
-              <details key={question}>
-                <summary className="flex min-h-14 cursor-pointer items-center justify-between py-4 font-medium">
-                  {question}
-                  <span className="text-2xl text-primary">+</span>
-                </summary>
-                <p className="pb-4 text-muted-foreground">
-                  Message us on WhatsApp and we will share the details for your shoot.
-                </p>
-              </details>
-            ))}
+            </div>
+
+            {/* Frequently asked */}
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-primary">
+                Got Questions?
+              </p>
+              <h2 className="mt-2 font-serif text-3xl sm:text-4xl">Frequently asked</h2>
+              <p className="mt-3 text-muted-foreground">
+                Quick answers to common questions about our packages, scheduling, and delivery.
+              </p>
+              <div className="mt-8 divide-y divide-border rounded-2xl border border-border bg-card px-5 shadow-sm">
+                {faqs.map(({ q, a }) => (
+                  <details key={q} className="group">
+                    <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between py-4 font-medium transition-colors hover:text-primary">
+                      <span>{q}</span>
+                      <span className="ml-3 text-2xl font-light text-primary transition-transform duration-200 group-open:rotate-45">
+                        +
+                      </span>
+                    </summary>
+                    <p className="pb-4 text-sm text-muted-foreground leading-relaxed">{a}</p>
+                  </details>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -403,6 +522,7 @@ function Contact() {
     {
       name: "Ajay Karke",
       image: ajayImage,
+      objectPosition: "object-[center_35%]",
       phone: "+91 77210 94206",
       phoneLink: whatsapp(),
       instagram: "@a_k_1260",
@@ -411,6 +531,7 @@ function Contact() {
     {
       name: "Bholenath Pawar",
       image: bholenathImage,
+      objectPosition: "object-center",
       phone: "+91 92096 72955",
       phoneLink: `https://wa.me/${secondary}`,
       instagram: "@pawar._.cinematic",
@@ -450,14 +571,14 @@ function Contact() {
                   key={photographer.name}
                   className="overflow-hidden rounded-2xl border border-border bg-background"
                 >
-                  <img
-                    src={photographer.image}
-                    alt={`Portrait of ${photographer.name}`}
-                    width={800}
-                    height={900}
-                    loading="lazy"
-                    className="aspect-[4/3] w-full object-cover object-[center_38%]"
-                  />
+                  <div className="aspect-square w-full overflow-hidden bg-muted/20">
+                    <img
+                      src={photographer.image}
+                      alt={`Portrait of ${photographer.name}`}
+                      loading="lazy"
+                      className={`h-full w-full object-cover ${photographer.objectPosition}`}
+                    />
+                  </div>
                   <div className="p-5">
                     <h3 className="font-serif text-2xl font-semibold">{photographer.name}</h3>
                     <p className="mt-1 text-sm text-muted-foreground">AB Creative Photographer</p>
