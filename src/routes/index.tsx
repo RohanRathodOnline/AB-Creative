@@ -14,6 +14,7 @@ import bholenathImage from "../assets/Bholenath Pawar.jpg";
 const primary = "917721094206";
 const secondary = "919209672955";
 const instagram = "a_k_1260";
+const youtube = "https://www.youtube.com/@TheHeaoneFilms";
 const whatsapp = (
   message = "Hello, I’m interested in booking a photography session with AB Creative. I’d like to know more about your packages and availability.",
 ) => `https://wa.me/${primary}?text=${encodeURIComponent(message)}`;
@@ -23,7 +24,8 @@ const packages = [
     icon: "💍",
     title: "Wedding Shoot",
     price: "₹6,999",
-    image: heroImage,
+    image: "https://i.pinimg.com/1200x/44/d0/2a/44d02ac9cf7da7ca66a7c839a7781ef9.jpg",
+    fallback: heroImage,
     features: [
       "Wedding-day coverage",
       "Candid + traditional photography",
@@ -36,7 +38,8 @@ const packages = [
     icon: "❤️",
     title: "Couple / Pre-Wedding",
     price: "₹3,999",
-    image: coupleImage,
+    image: "https://i.pinimg.com/736x/59/a6/7d/59a67df31f551ca23a89d658c3bff58c.jpg",
+    fallback: coupleImage,
     features: [
       "Couple portraits",
       "Pre-wedding session",
@@ -50,7 +53,8 @@ const packages = [
     icon: "🌿",
     title: "Outdoor Shoot",
     price: "₹2,999",
-    image: outdoorImage,
+    image: "https://i.pinimg.com/736x/b2/ba/d7/b2bad7b2d278a9b15acdfdc49f4e095d.jpg",
+    fallback: outdoorImage,
     features: [
       "Outdoor portraits",
       "Creative frames",
@@ -64,7 +68,8 @@ const packages = [
     icon: "🎂",
     title: "Birthday & Events",
     price: "₹2,999",
-    image: birthdayImage,
+    image: "https://i.pinimg.com/736x/da/f7/3f/daf73f760bdc51e6ced57010ec726823.jpg",
+    fallback: birthdayImage,
     features: [
       "Event coverage",
       "Cake cutting",
@@ -78,7 +83,8 @@ const packages = [
     icon: "👶",
     title: "Baby & Newborn",
     price: "₹2,999",
-    image: babyImage,
+    image: "https://i.pinimg.com/736x/09/72/bf/0972bf31fa1c0577f8c10a41a325ec68.jpg",
+    fallback: babyImage,
     features: [
       "Baby portraits",
       "Family photos",
@@ -92,7 +98,8 @@ const packages = [
     icon: "🏢",
     title: "Corporate / Product",
     price: "₹3,499",
-    image: corporateImage,
+    image: "https://i.pinimg.com/736x/34/3a/1c/343a1ca1433b2a71d19464ffe0a20799.jpg",
+    fallback: corporateImage,
     features: [
       "Professional photos",
       "Products/team shots",
@@ -106,6 +113,7 @@ const packages = [
     title: "Custom Package",
     price: "Custom",
     image: customImage,
+    fallback: customImage,
     features: [
       "Personalized coverage",
       "Flexible shoot plan",
@@ -116,14 +124,106 @@ const packages = [
   },
 ] as const;
 
-const galleryItems = [
-  [heroImage, "Wedding", "Indian wedding couple at golden hour"],
-  [coupleImage, "Couple", "Couple portrait during golden hour"],
-  [outdoorImage, "Outdoor", "Scenic outdoor portrait session in nature"],
-  [birthdayImage, "Events", "Joyful birthday celebration with loved ones"],
-  [babyImage, "Baby", "Baby and newborn gentle portrait photography"],
-  [corporateImage, "Corporate", "High-end corporate and brand product photography"],
-] as const;
+type GalleryItem = [string, string, string];
+
+const galleryItems: GalleryItem[] = [
+  // Wedding
+  [
+    "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80&fit=crop",
+    "Wedding",
+    "Indian wedding couple in traditional attire",
+  ],
+  [
+    "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80&fit=crop",
+    "Wedding",
+    "Bridal portrait with elegant jewellery",
+  ],
+  [
+    "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=800&q=80&fit=crop",
+    "Wedding",
+    "Wedding ceremony moment",
+  ],
+  // Couple
+  [
+    "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800&q=80&fit=crop",
+    "Couple",
+    "Romantic couple portrait at golden hour",
+  ],
+  [
+    "https://images.unsplash.com/photo-1595152772835-219674b2a163?w=800&q=80&fit=crop",
+    "Couple",
+    "Couple laughing together outdoors",
+  ],
+  [
+    "https://images.unsplash.com/photo-1621184455862-c163dfb30e0f?w=800&q=80&fit=crop",
+    "Couple",
+    "Intimate couple close-up portrait",
+  ],
+  // Outdoor
+  [
+    "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=800&q=80&fit=crop",
+    "Outdoor",
+    "Dramatic outdoor portrait in natural light",
+  ],
+  [
+    "https://images.unsplash.com/photo-1488161628813-04466f872be2?w=800&q=80&fit=crop",
+    "Outdoor",
+    "Outdoor portrait with bokeh background",
+  ],
+  [
+    "https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=800&q=80&fit=crop",
+    "Outdoor",
+    "Portrait in lush green outdoor setting",
+  ],
+  // Events
+  [
+    "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800&q=80&fit=crop",
+    "Events",
+    "Vibrant birthday celebration with candles",
+  ],
+  [
+    "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=800&q=80&fit=crop",
+    "Events",
+    "Joyful party celebration moment",
+  ],
+  [
+    "https://images.unsplash.com/photo-1464349153735-7db50ed83c84?w=800&q=80&fit=crop",
+    "Events",
+    "Birthday cake cutting ceremony",
+  ],
+  // Baby
+  [
+    "https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=800&q=80&fit=crop",
+    "Baby",
+    "Newborn baby sleeping peacefully",
+  ],
+  [
+    "https://images.unsplash.com/photo-1566004100631-35d015d6a491?w=800&q=80&fit=crop",
+    "Baby",
+    "Baby with soft natural light portrait",
+  ],
+  [
+    "https://images.unsplash.com/photo-1491013516836-7db643ee125a?w=800&q=80&fit=crop",
+    "Baby",
+    "Cute baby smiling during portrait session",
+  ],
+  // Corporate
+  [
+    "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80&fit=crop",
+    "Corporate",
+    "Professional corporate team photography",
+  ],
+  [
+    "https://images.unsplash.com/photo-1560472355-536de3962603?w=800&q=80&fit=crop",
+    "Corporate",
+    "High-end product photography on clean background",
+  ],
+  [
+    "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80&fit=crop",
+    "Corporate",
+    "Modern office environment professional shoot",
+  ],
+];
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -141,7 +241,7 @@ export const Route = createFileRoute("/")({
   }),
 });
 
-function Nav() {
+function Nav({ onBook }: { onBook: () => void }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const links = [
@@ -179,13 +279,14 @@ function Nav() {
               {name}
             </a>
           ))}
-          <a
-            href={whatsapp()}
+          <button
+            type="button"
+            onClick={onBook}
             className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#25D366] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#1ebe5b]"
           >
             <MessageCircle className="h-5 w-5" aria-hidden="true" />
             Book Now
-          </a>
+          </button>
         </nav>
         <button
           type="button"
@@ -214,7 +315,7 @@ function Nav() {
     </header>
   );
 }
-function Hero() {
+function Hero({ onBook }: { onBook: () => void }) {
   return (
     <section className="relative flex min-h-[min(760px,100svh)] items-end overflow-hidden pb-12 pt-28 sm:items-center">
       <img
@@ -239,13 +340,14 @@ function Hero() {
           Wedding • Couple • Portrait • Event Photography
         </p>
         <div className="mt-7 flex flex-col gap-3 min-[420px]:flex-row">
-          <a
-            href={whatsapp()}
+          <button
+            type="button"
+            onClick={onBook}
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#25D366] px-7 font-semibold text-white transition-colors hover:bg-[#1ebe5b]"
           >
             <MessageCircle className="h-5 w-5" aria-hidden="true" />
             Book on WhatsApp
-          </a>
+          </button>
           <a
             href="#work"
             className="inline-flex min-h-12 items-center justify-center rounded-full border border-foreground/20 bg-background/70 px-7"
@@ -257,7 +359,110 @@ function Hero() {
     </section>
   );
 }
-function Services() {
+function BookingModal({
+  message,
+  onClose,
+}: {
+  message: string;
+  onClose: () => void;
+}) {
+  useEffect(() => {
+    const close = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", close);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", close);
+    };
+  }, [onClose]);
+
+  const contacts = [
+    {
+      name: "Ajay Karke",
+      role: "Lead Photographer",
+      phone: "+91 77210 94206",
+      link: `https://wa.me/${primary}?text=${encodeURIComponent(message)}`,
+      avatar: "AK",
+    },
+    {
+      name: "Bholenath Pawar",
+      role: "Co-Photographer",
+      phone: "+91 92096 72955",
+      link: `https://wa.me/${secondary}?text=${encodeURIComponent(message)}`,
+      avatar: "BP",
+    },
+  ];
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Choose a contact to book"
+      onClick={onClose}
+      className="fixed inset-0 z-[70] flex items-end justify-center sm:items-center"
+      style={{ backgroundColor: "rgba(0,0,0,0.55)", backdropFilter: "blur(4px)" }}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="w-full max-w-sm rounded-t-3xl sm:rounded-3xl bg-card p-6 shadow-2xl border border-border"
+        style={{
+          animation: "slideUpModal 0.32s cubic-bezier(0.34,1.26,0.64,1) both",
+        }}
+      >
+        {/* Header */}
+        <div className="mb-5 flex items-start justify-between">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-widest text-primary">Book via WhatsApp</p>
+            <h3 className="mt-1 font-serif text-2xl font-semibold">Choose a contact</h3>
+          </div>
+          <button
+            type="button"
+            aria-label="Close"
+            onClick={onClose}
+            className="flex h-9 w-9 items-center justify-center rounded-full bg-secondary/60 text-lg font-light transition-colors hover:bg-secondary"
+          >
+            ×
+          </button>
+        </div>
+
+        {/* Contact cards */}
+        <div className="space-y-3">
+          {contacts.map((c) => (
+            <a
+              key={c.name}
+              href={c.link}
+              target="_blank"
+              rel="noreferrer"
+              onClick={onClose}
+              className="group flex items-center gap-4 rounded-2xl border border-border bg-background p-4 transition-all hover:border-[#25D366]/60 hover:shadow-md"
+            >
+              {/* Avatar */}
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-bold text-primary">
+                {c.avatar}
+              </span>
+              {/* Info */}
+              <div className="flex-1 min-w-0">
+                <p className="font-semibold leading-tight">{c.name}</p>
+                <p className="text-xs text-muted-foreground">{c.role}</p>
+                <p className="mt-0.5 text-sm font-medium text-primary">{c.phone}</p>
+              </div>
+              {/* WhatsApp icon */}
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#25D366]/10 transition-colors group-hover:bg-[#25D366] group-hover:text-white text-[#25D366]">
+                <MessageCircle className="h-4 w-4" />
+              </span>
+            </a>
+          ))}
+        </div>
+
+        <p className="mt-4 text-center text-xs text-muted-foreground">
+          Tap a contact — your booking details will be pre-filled in WhatsApp.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function Services({ onBook }: { onBook: (msg: string) => void }) {
   return (
     <section id="services" className="py-20">
       <div className="mx-auto max-w-6xl px-5 sm:px-6">
@@ -271,10 +476,10 @@ function Services() {
           </p>
         </div>
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {packages.map(({ icon, title, price, image, features, whatsappMessage }) => (
+          {packages.map(({ icon, title, price, image, fallback, features, whatsappMessage }) => (
             <article
               key={title}
-              className="package-card flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:shadow-md"
+              className="package-card group flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:shadow-lg"
             >
               <div className="relative aspect-[5/3] w-full overflow-hidden">
                 <img
@@ -283,9 +488,19 @@ function Services() {
                   width={600}
                   height={400}
                   loading="lazy"
-                  className="package-image h-full w-full object-cover"
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = fallback;
+                  }}
+                  className="package-image h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
                 />
-                <span className="absolute left-3 top-3 inline-flex items-center rounded-full bg-background/90 px-3 py-1 text-sm font-medium shadow-sm backdrop-blur-md">
+                {/* Emoji badge: hidden by default, slides in from left on hover */}
+                <span
+                  className="absolute left-3 top-3 inline-flex items-center rounded-full bg-background/90 px-3 py-1 text-sm font-medium shadow-sm backdrop-blur-md
+                    opacity-0 -translate-x-6
+                    transition-all duration-400 ease-out
+                    group-hover:opacity-100 group-hover:translate-x-0"
+                >
                   {icon}
                 </span>
               </div>
@@ -301,16 +516,17 @@ function Services() {
                     </li>
                   ))}
                 </ul>
-                <a
-                  href={whatsapp(whatsappMessage)}
-                  className="mt-6 inline-flex min-h-11 items-center justify-between rounded-xl bg-secondary/70 px-4 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-[#25D366] hover:text-white"
+                <button
+                  type="button"
+                  onClick={() => onBook(whatsappMessage)}
+                  className="mt-6 inline-flex min-h-11 w-full items-center justify-between rounded-xl bg-secondary/70 px-4 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-[#25D366] hover:text-white"
                 >
                   <span className="flex items-center gap-2">
                     <MessageCircle className="h-4 w-4" aria-hidden="true" />
                     Book Now
                   </span>
                   <span>→</span>
-                </a>
+                </button>
               </div>
             </article>
           ))}
@@ -321,45 +537,53 @@ function Services() {
 }
 function Gallery() {
   const [filter, setFilter] = useState("All");
-  const [selected, setSelected] = useState<(typeof galleryItems)[number] | null>(null);
-  const shown = galleryItems.filter((item) => filter === "All" || item[1] === filter);
-  useEffect(() => {
-    if (!selected) return;
-    const close = (event: KeyboardEvent) => event.key === "Escape" && setSelected(null);
-    document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", close);
-    return () => {
-      document.body.style.overflow = "";
-      window.removeEventListener("keydown", close);
-    };
-  }, [selected]);
+  const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
+
+  const handleImageError = (url: string) => {
+    setFailedImages((prev) => new Set(prev).add(url));
+  };
+
+  const scrollToServices = () => {
+    document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  // Filter out broken images first
+  const workingItems = galleryItems.filter((item) => !failedImages.has(item[0]));
+
+  // For "All": pick up to 1 per category to get a max of 6
+  const categories = ["Wedding", "Couple", "Outdoor", "Events", "Baby", "Corporate"];
+  const shown =
+    filter === "All"
+      ? (categories
+          .map((cat) => workingItems.find((item) => item[1] === cat))
+          .filter(Boolean) as GalleryItem[])
+      : workingItems.filter((item) => item[1] === filter);
+
   return (
     <section id="work" className="bg-secondary/40 py-20">
       <div className="mx-auto max-w-6xl px-5 sm:px-6">
         <h2 className="text-center font-serif text-4xl">Frames that feel like home</h2>
         <div className="mt-8 flex gap-2 overflow-x-auto pb-2 md:justify-center">
-          {["All", "Wedding", "Couple", "Outdoor", "Events", "Baby", "Corporate"].map(
-            (item) => (
-              <button
-                key={item}
-                type="button"
-                onClick={() => setFilter(item)}
-                aria-pressed={filter === item}
-                className={`min-h-11 shrink-0 rounded-full border px-4 ${filter === item ? "bg-primary text-primary-foreground" : "bg-card"}`}
-              >
-                {item}
-              </button>
-            ),
-          )}
+          {["All", ...categories].map((item) => (
+            <button
+              key={item}
+              type="button"
+              onClick={() => setFilter(item)}
+              aria-pressed={filter === item}
+              className={`min-h-11 shrink-0 rounded-full border px-4 ${filter === item ? "bg-primary text-primary-foreground" : "bg-card"}`}
+            >
+              {item}
+            </button>
+          ))}
         </div>
         <div className="mt-7 grid grid-cols-2 gap-3 md:grid-cols-3">
           {shown.map((item) => (
             <button
               key={`${item[1]}-${item[0]}`}
               type="button"
-              onClick={() => setSelected(item)}
-              className="portfolio-frame relative aspect-[4/5] overflow-hidden rounded-2xl text-left"
-              aria-label={`View ${item[2]}`}
+              onClick={scrollToServices}
+              className="portfolio-frame relative aspect-[4/5] overflow-hidden rounded-2xl text-left cursor-pointer"
+              aria-label={`Book a ${item[1]} session`}
             >
               <img
                 src={item[0]}
@@ -367,6 +591,7 @@ function Gallery() {
                 width={600}
                 height={750}
                 loading="lazy"
+                onError={() => handleImageError(item[0])}
                 className="portfolio-image h-full w-full object-cover"
               />
               <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-3 pt-8 text-sm text-white">
@@ -376,31 +601,6 @@ function Gallery() {
           ))}
         </div>
       </div>
-      {selected && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          onClick={() => setSelected(null)}
-          className="fixed inset-0 z-[60] flex items-center justify-center bg-black/90 p-4"
-        >
-          <button
-            type="button"
-            aria-label="Close image preview"
-            onClick={() => setSelected(null)}
-            className="absolute right-4 top-4 h-11 w-11 rounded-full bg-card text-2xl"
-          >
-            x
-          </button>
-          <img
-            src={selected[0]}
-            alt={selected[2]}
-            width={1200}
-            height={1500}
-            onClick={(event) => event.stopPropagation()}
-            className="max-h-[88vh] max-w-full object-contain"
-          />
-        </div>
-      )}
     </section>
   );
 }
@@ -523,6 +723,7 @@ function Contact() {
       name: "Ajay Karke",
       image: ajayImage,
       objectPosition: "object-[center_35%]",
+      bio: "Wedding & portrait specialist with a passion for candid emotions and golden-hour frames.",
       phone: "+91 77210 94206",
       phoneLink: whatsapp(),
       instagram: "@a_k_1260",
@@ -532,6 +733,7 @@ function Contact() {
       name: "Bholenath Pawar",
       image: bholenathImage,
       objectPosition: "object-center",
+      bio: "Cinematic storyteller capturing couple sessions, events, and outdoor portraits with a creative eye.",
       phone: "+91 92096 72955",
       phoneLink: `https://wa.me/${secondary}`,
       instagram: "@pawar._.cinematic",
@@ -559,51 +761,91 @@ function Contact() {
               <MessageCircle className="h-5 w-5" aria-hidden="true" />
               Check availability on WhatsApp
             </a>
+
+            {/* YouTube channel card */}
+            <a
+              href={youtube}
+              target="_blank"
+              rel="noreferrer"
+              className="group mt-4 inline-flex min-h-12 items-center gap-3 rounded-full border border-border bg-background/60 px-6 font-semibold transition-all hover:border-[#FF0000]/40 hover:bg-[#FF0000]/5 hover:shadow-md"
+            >
+              {/* YouTube icon */}
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                className="h-5 w-5 shrink-0 text-[#FF0000] transition-transform duration-300 group-hover:scale-110"
+                fill="currentColor"
+              >
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+              </svg>
+              {/* Text swap on hover */}
+              <span className="relative inline-block overflow-hidden">
+                <span className="block transition-all duration-300 group-hover:-translate-y-full group-hover:opacity-0">
+                  Watch on YouTube
+                </span>
+                <span className="absolute inset-0 flex items-center translate-y-full opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 text-[#FF0000]">
+                  Subscribe
+                </span>
+              </span>
+            </a>
           </div>
 
           <div className="mt-10 border-t border-border pt-8">
             <p className="text-sm font-semibold uppercase tracking-widest text-primary">
               Meet the team
             </p>
-            <div className="mt-5 grid gap-5 md:grid-cols-2">
+            <div className="mt-5 space-y-4">
               {photographers.map((photographer) => (
                 <article
                   key={photographer.name}
-                  className="overflow-hidden rounded-2xl border border-border bg-background"
+                  className="flex items-center gap-5 rounded-2xl border border-border bg-background p-4 sm:p-5 transition-shadow hover:shadow-md"
                 >
-                  <div className="aspect-square w-full overflow-hidden bg-muted/20">
+                  {/* Square photo — left */}
+                  <div className="relative h-28 w-28 shrink-0 overflow-hidden rounded-xl bg-muted/20 sm:h-28 sm:w-28">
                     <img
                       src={photographer.image}
                       alt={`Portrait of ${photographer.name}`}
                       loading="lazy"
                       className={`h-full w-full object-cover ${photographer.objectPosition}`}
                     />
+                    {/* Vignette */}
+                    <div
+                      aria-hidden="true"
+                      className="pointer-events-none absolute inset-0"
+                      style={{
+                        background:
+                          "radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.4) 100%)",
+                      }}
+                    />
                   </div>
-                  <div className="p-5">
-                    <h3 className="font-serif text-2xl font-semibold">{photographer.name}</h3>
-                    <p className="mt-1 text-sm text-muted-foreground">AB Creative Photographer</p>
-                    <div className="mt-5 grid gap-3 sm:grid-cols-2">
+
+                  {/* Info — right */}
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-serif text-xl font-semibold leading-tight">{photographer.name}</h3>
+                    <p className="text-xs font-semibold uppercase tracking-widest text-primary mt-0.5">AB Creative Photographer</p>
+                    <p className="mt-1.5 hidden sm:block text-sm text-muted-foreground leading-relaxed">{photographer.bio}</p>
+
+                    {/* Contact buttons */}
+                    <div className="mt-3 flex flex-wrap gap-2">
                       <a
                         href={photographer.phoneLink}
                         target="_blank"
                         rel="noreferrer"
-                        className="rounded-xl border border-border p-3 transition-colors hover:border-primary/40"
+                        className="inline-flex items-center gap-1.5 rounded-full bg-[#25D366]/10 px-3 py-1.5 text-xs font-semibold text-[#25D366] transition-colors hover:bg-[#25D366] hover:text-white"
                       >
-                        <span className="block text-xs font-semibold uppercase tracking-widest text-primary">
-                          WhatsApp
-                        </span>
-                        <strong className="mt-1 block text-sm">{photographer.phone}</strong>
+                        <MessageCircle className="h-3.5 w-3.5" aria-hidden="true" />
+                        WhatsApp
                       </a>
                       <a
                         href={photographer.instagramLink}
                         target="_blank"
                         rel="noreferrer"
-                        className="rounded-xl border border-border p-3 transition-colors hover:border-primary/40"
+                        className="inline-flex items-center gap-1.5 rounded-full bg-pink-500/10 px-3 py-1.5 text-xs font-semibold text-pink-500 transition-colors hover:bg-pink-500 hover:text-white"
                       >
-                        <span className="block text-xs font-semibold uppercase tracking-widest text-primary">
-                          Instagram
-                        </span>
-                        <strong className="mt-1 block text-sm">{photographer.instagram}</strong>
+                        <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="currentColor" aria-hidden="true">
+                          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" />
+                        </svg>
+                        Instagram
                       </a>
                     </div>
                   </div>
@@ -616,7 +858,7 @@ function Contact() {
     </section>
   );
 }
-function StickyBooking() {
+function StickyBooking({ onBook }: { onBook: () => void }) {
   const [visible, setVisible] = useState(false);
   const [compact, setCompact] = useState(false);
   useEffect(() => {
@@ -631,8 +873,9 @@ function StickyBooking() {
   }, []);
   if (!visible) return null;
   return (
-    <a
-      href={whatsapp()}
+    <button
+      type="button"
+      onClick={onBook}
       aria-label="Book on WhatsApp"
       className={`group whatsapp-float fixed bottom-4 z-40 flex h-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl transition-all duration-500 ease-out hover:bg-[#1ebe5b] hover:shadow-2xl md:hidden ${compact ? "left-4 w-14 min-[430px]:left-5" : "inset-x-4 gap-3"}`}
     >
@@ -645,27 +888,72 @@ function StickyBooking() {
       >
         WhatsApp Us
       </span>
-    </a>
+    </button>
   );
 }
+const DEFAULT_BOOKING_MSG =
+  "Hello, I'm interested in booking a photography session with AB Creative. I'd like to know more about your packages and availability.";
+
 function Index() {
+  const [bookingMessage, setBookingMessage] = useState<string | null>(null);
+  const openBooking = (msg = DEFAULT_BOOKING_MSG) => setBookingMessage(msg);
+
   return (
     <>
-      <Nav />
+      <Nav onBook={() => openBooking()} />
       <main>
-        <Hero />
-        <Services />
+        <Hero onBook={() => openBooking()} />
+        <Services onBook={openBooking} />
         <Gallery />
         <SimpleSections />
         <Contact />
       </main>
       <footer className="border-t border-border py-9 text-center text-sm text-muted-foreground">
-        AB Creative
-        <br />
-        Wedding • Couple • Portrait • Event Photography
-        <br />© {new Date().getFullYear()} AB Creative. All rights reserved.
+        <p className="font-semibold text-foreground">AB Creative</p>
+        <p className="mt-1">Wedding • Couple • Portrait • Event Photography</p>
+        {/* Social links */}
+        <div className="mt-5 flex items-center justify-center gap-4">
+          <a
+            href={`https://www.instagram.com/${instagram}`}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Instagram"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-border transition-colors hover:border-pink-500/50 hover:bg-pink-500/10 hover:text-pink-500"
+          >
+            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden="true">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" />
+            </svg>
+          </a>
+          <a
+            href={youtube}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="YouTube"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-border transition-colors hover:border-[#FF0000]/50 hover:bg-[#FF0000]/10 hover:text-[#FF0000]"
+          >
+            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden="true">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+            </svg>
+          </a>
+          <a
+            href={whatsapp()}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="WhatsApp"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-border transition-colors hover:border-[#25D366]/50 hover:bg-[#25D366]/10 hover:text-[#25D366]"
+          >
+            <MessageCircle className="h-4 w-4" />
+          </a>
+        </div>
+        <p className="mt-5">© {new Date().getFullYear()} AB Creative. All rights reserved.</p>
       </footer>
-      <StickyBooking />
+      <StickyBooking onBook={() => openBooking()} />
+      {bookingMessage !== null && (
+        <BookingModal
+          message={bookingMessage}
+          onClose={() => setBookingMessage(null)}
+        />
+      )}
     </>
   );
 }
